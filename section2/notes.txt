@@ -1,0 +1,58 @@
+What is component based architecture?
+CBA involves defining the components which are the basic building blocks of any Angular app.
+
+Structure for a component? 
+Generally a copmonent has
+- html
+-css
+-ts
+- testing file
+
+
+Difference between index.html and app.component.html
+index.html is used for defining global components or declarationas and libraries
+app.component.html is used to building the app. parent component
+
+
+What is interpolation?
+It's a technoque used to bind data from a component class to the view template. It uses {{}}
+
+Interpolate undefined?
+it will render empty string
+
+diff interpolation and property binding
+Interpolation treats all data types as strings
+Property binding is used when we want to set element's property to non-string
+
+
+syntax
+[proeprty]="variable"
+
+
+explain data flow in event binding
+In evt binding the data flows from dom to component. when evt is triggerd, the bond method from component gets called
+
+diff evt and property binding
+evt - data is sent from dom to component
+prop - data from component to view
+
+what is $event
+represents the dom event object that is passed to an evt handler when an evt is triggered. it contains info about the event, suchas target etc.
+
+how to use $event to prevent default behaviour
+event.preventDefault()
+
+additional arguments?
+(click)="onClick($event, 'hello')"
+
+common use cases for $event
+input values
+preventing defaultstop propagation
+key events
+
+what is 2 way binding
+Two-way binding in Angular provides a mechanism for automatic synchronization of data between the component's data model and the view (UI elements). This means that changes made in the data model are immediately reflected in the view, and conversely, changes made by the user in the view (e.g., through input fields) are immediately reflected in the data model.
+
+pitfalls of 2 way binding
+tight coupling
+performance

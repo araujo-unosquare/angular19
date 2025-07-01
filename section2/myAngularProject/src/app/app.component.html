@@ -1,0 +1,17 @@
+<h1>{{ message }}</h1>
+
+<app-test></app-test>
+
+<h2>Property binding</h2>
+<input type="text" value="{{ inputValue }}" />
+<br /><br />
+<input type="text" [value]="inputValue" [disabled]="isDisabled" />
+
+<button type="submit" (click)="display()">Click me</button>
+<br /><br />
+<h2>$event</h2>
+<input type="text" (keyup)="onKeyPress($event)" />
+<br /><br />
+<h2>2 way bindging</h2>
+<input type="text" [(ngModel)]="dynamicText" />
+<p>{{ dynamicText }}</p>

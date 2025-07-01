@@ -1,0 +1,11 @@
+Angular new features
+
+1. Standalone components. By default every component is Standalone
+
+2. Improved dependency injection. We can use inject().
+
+3. Signal-based reactivity model
+
+4. Optimized preloading strategies.
+
+5. Improved token injection
