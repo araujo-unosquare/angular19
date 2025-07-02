@@ -1,0 +1,15 @@
+.special {
+    color: pink;
+}
+
+.dark-mode-container {
+    width: 300px;
+    height: 300px;
+    color: black;
+    border: 1px solid black;
+}
+
+.darkModeActive {
+    background-color: black;
+    color: white;
+}

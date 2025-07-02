@@ -1,0 +1,17 @@
+<h1>lifecycle</h1>
+<br />
+<button (click)="updateValue()">Update</button>
+<br />
+<app-test [inputValue]="inputValue" [user]="user"></app-test>
+<br />
+<button (click)="changeUserName()">Change user name</button>
+<br />
+<br />
+<h3>Component update hooks</h3>
+<div>
+  <h4>Parent</h4>
+  <button (click)="sendDataToChild()">Generate random</button>
+  <app-random>
+    <h3>{{ datafromParent }}</h3>
+  </app-random>
+</div>
