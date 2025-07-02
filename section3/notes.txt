@@ -1,0 +1,38 @@
+directives
+
+-structural: responsible for shaping and reshaping the dom. add, remove and manipulate elements.
+-attribute: responsible for changing behavior or appearance of html elements
+-component: responsible for controlling the rendering of the angular components
+
+
+what is ngif and how does it work?
+structural directive which is used to conditionally render elements in html
+
+ngif vs css display none
+ngif: element is completely removed from dom
+
+
+ngfor
+is used to iterate oveer a collection and dynamically generate html elements for each item
+
+how to oprimize?
+Angular provides trackBy. Helps angular identify each item uniquely, so only affected items are rerendered, optimizing perf. 
+
+
+switch
+it's used to conditionally render a view based on a given expression
+The @switch blocks displays content selected by one of the cases matching against the conditional expression. The value of the conditional expression is compared to the case expression using the === operator.
+
+The @default block is optional and can be omitted. If no @case matches the expression and there is no @default block, nothing is shown.
+
+
+
+<ng-container> is a special element in Angular that groups multiple elements together or marks a location in a template without rendering a real element in the DOM.
+
+the <ng-template> element lets you declare a template fragment – a section of content that you can dynamically or programmatically render.
+
+
+The NgTemplateOutlet directive from @angular/common accepts a TemplateRef and renders the fragment as a sibling to the element with the outlet. You should generally use NgTemplateOutlet on an <ng-container> element.
+
+When declaring a template fragment with <ng-template>, you can additionally declare parameters accepted by the fragment. When you render a fragment, you can optionally pass a context object corresponding to these parameters. You can use data from this context object in binding expressions and statements, in addition to referencing data from the component in which the fragment is declared.
+You can bind a context object to the ngTemplateOutletContext input

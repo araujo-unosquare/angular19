@@ -1,0 +1,66 @@
+<h1>Directives</h1>
+
+<div *ngIf="display">If example</div>
+
+@if (display) {
+<p>Welcome back, Friend!</p>
+} @else {
+<span>Display = false</span>
+}
+
+<!-- @for -->
+<!-- Track is MANDATORY -->
+@for (os of operatingSystems; track os.id) {
+{{ os.name }}
+}
+
+<!-- switch -->
+
+@switch (color) { @case ("red") {
+<div style="background-color: red; color: aliceblue; height: 30px">Red</div>
+} @case ("green") {
+<div style="background-color: green; color: aliceblue; height: 30px">green</div>
+} @default {
+<div>Invalid color</div>
+} }
+
+<!-- ngclass -->
+<p [ngClass]="currentClasses">NgClass</p>
+
+<button (click)="darkMode = !darkMode">Toggle dark mode</button>
+<div class="dark-mode-container" [ngClass]="{ darkModeActive: darkMode }">
+  <p>sample text</p>
+</div>
+
+<div>
+  <input
+    type="email"
+    [(ngModel)]="email"
+    [ngStyle]="{ 'background-color': isValidEmail ? 'lightgreen' : 'red' }"
+    (input)="validateEmail()"
+  />
+</div>
+
+<section>
+  <ng-container>
+    <h3>User bio</h3>
+    <p>Here's some info about the user</p>
+  </ng-container>
+</section>
+
+<!-- ng-template -->
+
+<ng-template #myFragment>
+  <p>This is a template fragment</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="myFragment"></ng-container>
+
+<ng-template #toppingTemplate let-pizzaTopping="topping">
+  <p>You selected: {{ pizzaTopping }}</p>
+</ng-template>
+<ng-container
+  [ngTemplateOutlet]="toppingTemplate"
+  [ngTemplateOutletContext]="{ topping: 'onion' }"
+/>
+
+<app-portfolio></app-portfolio>
