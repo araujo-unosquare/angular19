@@ -1,0 +1,56 @@
+@Component
+Decorator that marks a class as an Angular component and provides configuration metadata that determines how the component should be processed, instantiated, and used at runtime.
+
+
+imports
+(readonly any[] | Type<any>)[] | undefined
+The imports property specifies the standalone component's template dependencies — those directives, components, and pipes that can be used within its template. Standalone components can import other standalone components, directives, and pipes as well as existing NgModules.
+
+selector
+string | undefined
+The CSS selector that identifies this directive in a template and triggers instantiation of the directive.
+
+template
+string | undefined
+An inline template for an Angular component. If provided, do not supply a template file using templateUrl.
+
+styleUrl
+string | undefined
+One relative path or an absolute URL for file containing a CSS stylesheet to use in this component.
+
+
+@Input 
+ly declare component inputs by adding the @Input decorator to a property
+
+
+@Output
+You can alternatively define custom events by assigning a property to a new EventEmitter and adding the @Output decorator:
+
+@Component({/*...*/})
+export class ExpandablePanel {
+  @Output() panelClosed = new EventEmitter<void>();
+}
+
+
+
+ViewChild
+Property decorator that configures a view query. The change detector looks for the first element or the directive matching the selector in the view DOM. If the view DOM changes, and a new child matches the selector, the property is updated.
+
+
+ContentChild
+Property decorator that configures a content query.
+
+Use to get the first element or the directive matching the selector from the content DOM. If the content DOM changes, and a new child matches the selector, the property will be updated.
+
+ViewChild vs ContentChild
+ViewChild is used to access child component directly within template of current compinent
+ContentChild is used to acces conten projected into the current component
+
+
+
+HostBinding
+Decorator that marks a DOM property or an element class, style or attribute as a host-binding property and supplies configuration metadata. Angular automatically checks host bindings during change detection, and if a binding changes it updates the host element of the directive.
+
+
+HostListener
+Decorator that declares a DOM event to listen for, and provides a handler method to run when that event occurs.

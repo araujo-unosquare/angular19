@@ -1,0 +1,15 @@
+<h2>Child</h2>
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    @for (item of showData; track item.id) {
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,5 @@
+<ul>
+  @for (item of items(); track item; let i = $index;) {
+  <li>{{ item }} <button (click)="delete(i)">Delete</button></li>
+  }
+</ul>
