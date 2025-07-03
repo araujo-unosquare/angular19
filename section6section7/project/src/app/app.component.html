@@ -1,0 +1,26 @@
+<h1>Pipes</h1>
+
+<div>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>State</th>
+      <th>Salary</th>
+    </thead>
+    <tbody>
+      @for (item of employees; track $index) {
+      <tr>
+        <td>{{ item.name | titlecase }}</td>
+        <td>{{ item.state | slice : 0 : 3 | uppercase }}</td>
+        <td>{{ item.salary | currency }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-slice></app-slice>
+
+<app-converter></app-converter>
+
+<app-custom-pipes></app-custom-pipes>

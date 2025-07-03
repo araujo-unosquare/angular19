@@ -1,0 +1,21 @@
+<div class="product-grid">
+  <div
+    class="product-card"
+    *ngFor="let product of products | slice : startIndex : endIndex"
+  >
+    <h2>{{ product.name }}</h2>
+    <img [src]="product.imageUrl" alt="Course Image" />
+  </div>
+  <div class="btn-container">
+    <button type="button" (click)="previousPage()" [disabled]="startIndex == 0">
+      Previous
+    </button>
+    <button
+      type="button"
+      (click)="nextPage()"
+      [disabled]="endIndex >= products.length"
+    >
+      Next
+    </button>
+  </div>
+</div>

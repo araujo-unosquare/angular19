@@ -1,0 +1,16 @@
+Pipes 
+
+Pipes are a special operator in Angular template expressions that allows you to transform data declaratively in your template. Pipes let you declare a transformation function once and then use that transformation across multiple templates. Angular pipes use the vertical bar character (|), inspired by the Unix pipe.
+
+In addition to the @Pipe decorator, custom pipes should always implement the PipeTransform interface from @angular/core.
+
+Implementing this interface ensures that your pipe class has the correct structure.
+
+Transforming the value of a pipe
+Every transformation is invoked by the transform method with the first parameter being the value being passed in and the return value being the transformed value.
+
+Pure Pipes in Angular
+A pure pipe is the default type of pipe in Angular. These pipes are recalculated only when their input data changes based on reference checks (for objects and arrays) or value checks (for primitive data types). Pure pipes are stateless, meaning they don’t depend on or alter their internal state. 
+
+What is an Impure Pipe?
+An impure pipe, as the name suggests, is recalculated every time change detection runs, regardless of whether the input data has changed. This means Angular will invoke the pipe’s transform method every time something happens in the application—whether or not the pipe’s input has changed. 
