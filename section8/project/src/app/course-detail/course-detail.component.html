@@ -1,0 +1,11 @@
+<div class="parent-container">
+  <h2>{{ name }}</h2>
+  <div class="descContainer">
+    <p class="descTitle"><strong>What you'll learn...</strong></p>
+    <p class="description">{{ desc }}</p>
+  </div>
+  <div class="imgContainer">
+    <img [src]="img" alt="{{ name }}" />
+    <p class="price"><strong>Price: </strong>{{ price | currency : "USD" }}</p>
+  </div>
+</div>

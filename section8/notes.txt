@@ -1,0 +1,91 @@
+How Angular manages routing
+Routing in Angular is comprised of three primary parts:
+
+Routes define which component displays when a user visits a specific URL.
+Outlets are placeholders in your templates that dynamically load and render components based on the active route.
+Links provide a way for users to navigate between different routes in your application without triggering a full page reload.
+
+
+Show routes with outlets
+edit
+The RouterOutlet directive is a placeholder that marks the location where the router should render the component for the current URL.
+
+Where?
+Root component
+Parent components
+
+
+The RouterLink directive is Angular's declarative approach to navigation. It allows you to use standard anchor elements (<a>) that seamlessly integrate with Angular's routing system.
+
+<a>causes browser to reload, routerLink keeps app state intact, without reloading
+
+Define URL Paths with Route Parameters
+Parameterized URLs allow you to define dynamic paths that allow multiple URLs to the same component while dynamically displaying data based on parameters in the URL.
+
+You can define this type of pattern by adding parameters to your route’s path string and prefixing each parameter with the colon (:) character.
+
+Wildcards
+When you need to catch all routes for a specific path, the solution is a wildcard route which is defined with the double asterisk (**).
+
+A common example is defining a Page Not Found component.
+
+: Wildcard routes are typically placed at the end of a routes array.
+
+
+Nested Routes
+Nested routes, also known as child routes, are a common technique for managing more complex navigation routes where a component has a sub-view that changes based on the URL.
+
+The children property accepts an array of Route objects.
+
+To display child routes, the parent component includes its own <router-outlet>.
+
+
+Redirecting Routes
+Route redirects allow you to automatically navigate users from one route to another. Think of it like mail forwarding, where mail intended for one address is sent to a different address. This is useful for handling legacy URLs, implementing default routes, or managing access control.
+
+How to configure redirects
+You can define redirects in your route configuration with the redirectTo property. This property accepts a string.
+
+Understanding pathMatch
+The pathMatch property on routes enables developers to control how Angular matches a URL to routes.
+
+There are two values that pathMatch accepts:
+
+Value	Description
+'full'	The entire URL path must match exactly
+'prefix'	Only the beginning of the URL needs to match
+
+
+Get information about the current route with ActivatedRoute
+ActivatedRoute is a service from @angular/router that provides all the information associated with the current route.
+
+he ActivatedRoute can provide different information about the route. Some common properties include:
+
+Property	Details
+url	        An Observable of the route paths, represented as an array of strings for each part of the route path.
+data	    An Observable that contains the data object provided for the route. Also contains any resolved values from the resolve guard.
+params	    An Observable that contains the required and optional parameters specific to the route.
+queryParams	An Observable that contains the query parameters available to all routes.
+
+
+Understanding route snapshots
+Page navigations are events over time, and you can access the router state at a given time by retrieving a route snapshot.
+
+Route snapshots contain essential information about the route, including its parameters, data, and child routes. In addition, snapshots are static and will not reflect future changes.
+
+
+Query Parameters
+Query parameters provide a flexible way to pass optional data through URLs without affecting the route structure. Unlike route parameters, query parameters can persist across navigation events and are perfect for handling filtering, sorting, pagination, and other stateful UI elements.
+
+
+router.navigate()
+You can use the router.navigate() method to programmatically navigate between routes by specifying a URL path array.
+
+router.navigate() supports both simple and complex routing scenarios, allowing you to pass route parameters, query parameters, and control navigation behavior.
+
+You can also build dynamic navigation paths relative to your component’s location in the routing tree using the relativeTo option.
+
+ // With query parameters
+    this.router.navigate(['/search'], {
+      queryParams: { category: 'books', sort: 'price' }
+    });
