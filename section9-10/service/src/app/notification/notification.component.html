@@ -1,0 +1,10 @@
+<h1>Notifications</h1>
+<ul class="notification-list">
+  @for(notification of notifications; track notifications){
+  <li>{{ notification }}</li>
+  }
+</ul>
+<div class="button-container">
+  <button (click)="addNotification()">Add Notification</button>
+  <button (click)="clearNotifications()">Clear All</button>
+</div>

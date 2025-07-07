@@ -1,0 +1,18 @@
+h1 {
+  font-size: 45px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centers the ul content */
+  padding: 0;
+}
+
+li {
+  font-size: 25px;
+  margin: 0 15px; /* Reduces spacing for tighter layout */
+  text-align: center;
+  color: #1f2022;
+}

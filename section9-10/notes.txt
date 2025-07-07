@@ -1,0 +1,44 @@
+Servcices
+
+Service is a broad category encompassing any value, function, or feature that an application needs. A service is typically a class with a narrow, well-defined purpose. A component is one type of class that can use DI.
+
+Angular distinguishes components from services to increase modularity and reusability. By separating a component's view-related features from other kinds of processing, you can make your component classes lean and efficient.
+
+
+
+Dependency Injection
+
+Dependency Injection (DI) in Angular is a fundamental design pattern and core mechanism that enables the framework to provide instances of dependencies to classes that need them, rather than requiring those classes to create or locate their dependencies themselves. This approach promotes loose coupling, modularity, and testability within Angular applications.
+
+In Angular 19, @Injectable() remains the decorator used to mark a class as a service that can be injected into other parts of the application, such as components, directives, or other services. It signals to Angular's Dependency Injection (DI) system that this class is a provider and can be instantiated and delivered when requested.
+
+
+Providing a service at the application root level using providedIn allows injecting the service into all other classes. Using providedIn enables Angular and JavaScript code optimizers to effectively remove services that are unused (known as tree-shaking).
+
+You can provide a service by using providedIn: 'root' in the @Injectable decorator
+
+You can provide services at @Component level by using the providers field of the @Component decorator. In this case the HeroService becomes available to all instances of this component and other components and directives used in the template.
+
+In Angular 19, providers are instructions to the Dependency Injection (DI) system on how to obtain a value for a dependency. These dependencies are frequently services that are created and provided within an application.
+
+
+Injecting services
+To inject a service as a dependency into a component, you can declare a class field representing the dependency and use Angular's inject function to initialize it.
+
+ the @Inject() decorator also exists and is used to explicitly specify a dependency's injection token when the type cannot be inferred or when injecting a non-class dependency (like a string or object). 
+
+ Using an InjectionToken object
+Use an InjectionToken object as provider token for non-class dependencies.
+
+
+Value providers: useValue
+The useValue key lets you associate a static value with a DI token.
+
+Use this technique to provide runtime configuration constants such as website base addresses and feature flags. You can also use a value provider in a unit test to provide mock data in place of a production data service.
+
+
+Alias providers: useExisting
+The useExisting provider key lets you map one token to another. In effect, the first token is an alias for the service associated with the second token, creating two ways to access the same service object.
+
+Factory providers: useFactory
+The useFactory provider key lets you create a dependency object by calling a factory function. With this approach, you can create a dynamic value based on information available in the DI and elsewhere in the app.

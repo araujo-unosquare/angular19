@@ -1,0 +1,18 @@
+<h1>Employee Details</h1>
+<ul>
+  @for (emp of employees; track $index) {
+  <li>
+    Employee: {{ emp.name }}
+    <button (click)="showDetails(emp.id)">Show Details</button>
+
+    <div>
+      @if (emp.id === empId) {
+      <p class="details">Id: {{ emp.id }}</p>
+      <p class="details">Department: {{ emp.department }}</p>
+      <p class="details">Location: {{ emp.location }}</p>
+      <p class="details">Phone: {{ emp.phone }}</p>
+      }
+    </div>
+  </li>
+  }
+</ul>
