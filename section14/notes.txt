@@ -1,0 +1,54 @@
+
+route guards are functions that control whether a user can navigate to or leave a particular route. They are like checkpoints that manage whether a user can access specific routes. Common examples of using route guards include authentication and access control.
+
+
+Route guard return types
+All route guards share the same possible return types. This gives you flexibility in how you control navigation:
+
+Return types	            Description
+boolean	                    true allows navigation, false blocks it (see note for CanMatch route guard)
+UrlTree or RedirectCommand	Redirects to another route instead of blocking
+Promise<T> or Observable<T>	Router uses the first emitted value and then unsubscribes
+
+
+
+CanActivate
+The CanActivate guard determines whether a user can access a route. It is most commonly used for authentication and authorization.
+
+It has access to the following default arguments:
+
+route: ActivatedRouteSnapshot - Contains information about the route being activated
+state: RouterStateSnapshot - Contains the router's current state
+
+
+
+CanDeactivate
+The CanDeactivate guard determines whether a user can leave a route. A common scenario is preventing navigation away from unsaved forms.
+
+It has access to the following default arguments:
+
+component: T - The component instance being deactivated
+currentRoute: ActivatedRouteSnapshot - Contains information about the current route
+currentState: RouterStateSnapshot - Contains the current router state
+nextState: RouterStateSnapshot - Contains the next router state being navigated to
+
+
+CanActivateChild
+The CanActivateChild guard determines whether a user can access child routes of a particular parent route. This is useful when you want to protect an entire section of nested routes. In other words, canActivateChild runs for all children. If there is a child component with another child component underneath of it, canActivateChild will run once for both components.
+
+It has access to the following default arguments:
+
+childRoute: ActivatedRouteSnapshot - Contains information about the "future" snapshot (i.e., state the router is attempting to navigate to) of the child route being activated
+state: RouterStateSnapshot - Contains the router's current state
+
+
+
+
+CanMatch
+The CanMatch guard determines whether a route can be matched during path matching. Unlike other guards, rejection falls through to try other matching routes instead of blocking navigation entirely. This can be useful for feature flags, A/B testing, or conditional route loading.
+
+It has access to the following default arguments:
+
+route: Route - The route configuration being evaluated
+segments: UrlSegment[] - The URL segments that have not been consumed by previous parent route evaluations
+It can return the standard return guard types, but when it returns false, Angular tries other matching routes instead of completely blocking navigation.
