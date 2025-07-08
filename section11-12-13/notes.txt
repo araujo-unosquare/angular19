@@ -1,0 +1,53 @@
+Build a template-driven form
+Template-driven forms rely on directives defined in the FormsModule.
+
+Directives	    Details
+NgModel	        Reconciles value changes in the attached form element with changes in the data model, allowing you to respond to user input with input validation and error handling.
+NgForm	        Creates a top-level FormGroup instance and binds it to a <form> element to track aggregated form value and validation status. As soon as you import FormsModule, this directive becomes active by default on all <form> tags. You don't need to add a special selector.
+NgModelGroup	Creates and binds a FormGroup instance to a DOM element.
+
+
+
+
+
+Overview of reactive forms
+Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
+
+
+Reactive forms and template-driven forms process and manage form data differently. Each approach offers different advantages.
+
+Forms	                Details
+Reactive forms	        Provide direct, explicit access to the underlying form's object model. Compared to template-driven forms, they are more robust: they're more scalable, reusable, and testable. If forms are a key part of your application, or you're already using reactive patterns for building your application, use reactive forms.
+Template-driven forms	Rely on directives in the template to create and manipulate the underlying object model. They are useful for adding a simple form to an app, such as an email list signup form. They're straightforward to add to an app, but they don't scale as well as reactive forms. If you have very basic form requirements and logic that can be managed solely in the template, template-driven forms could be a good fit.
+
+
+FormControl
+Tracks the value and validation status of an individual form control.
+FormControl takes a single generic argument, which describes the type of its value. This argument always implicitly includes null because the control can be reset. To change this behavior, set nonNullable or see the usage notes below.
+
+
+
+FormGroup
+Tracks the value and validity state of a group of FormControl instances.
+
+A FormGroup aggregates the values of each child FormControl into one object, with each control name as the key. It calculates its status by reducing the status values of its children. For example, if one of the controls in a group is invalid, the entire group becomes invalid.
+
+
+FormArray
+Tracks the value and validity state of an array of FormControl, FormGroup or FormArray instances.
+
+A FormArray aggregates the values of each child FormControl into an array. It calculates its status by reducing the status values of its children. For example, if one of the controls in a FormArray is invalid, the entire array becomes invalid.
+
+
+
+pristine
+boolean | null
+Reports whether the control is pristine, meaning that the user has not yet changed the value in the UI. If the control is not present, null is returned.
+
+dirty
+boolean | null
+Reports whether the control is dirty, meaning that the user has changed the value in the UI. If the control is not present, null is returned.
+
+touched
+boolean | null
+Reports whether the control is touched, meaning that the user has triggered a blur event on it. If the control is not present, null is returned.

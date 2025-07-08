@@ -1,0 +1,79 @@
+h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Employee Row */
+.employee-row {
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Employee Fields */
+.employee-fields {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    padding: 10px;
+}
+
+/* Inputs */
+input {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+    width: 250px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Buttons */
+.add-button,
+.submit-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button {
+    color: #333;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

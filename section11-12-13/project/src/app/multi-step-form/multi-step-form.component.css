@@ -1,0 +1,57 @@
+.container {
+    max-width: 90%;
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-weight: 400;
+    text-align: center;
+    font-size: 40px;
+    color: dodgerblue;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-bottom: 20px;
+    font-weight: 350;
+    font-size: 22px;
+}
+
+textarea~label {
+    color: #111;
+}
+
+.form-label,
+.form-control {
+    font-size: 16px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h4 {
+        font-size: 18px;
+        /* Adjust subheading size */
+    }
+}

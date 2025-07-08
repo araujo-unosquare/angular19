@@ -1,0 +1,36 @@
+.container {
+    width: 400px;
+    padding: 25px;
+    background: rgba(85, 85, 85, 0.469);
+    /* Transparent white */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Soft shadow */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: auto;
+}
+
+h2 {
+    color: #fff;
+}
+
+.form-label {
+    color: #fff;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: rgba(0, 123, 255, 0.8);
+    border: none;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: rgba(0, 123, 255, 1);
+}
