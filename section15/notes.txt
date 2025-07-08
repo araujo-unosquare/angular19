@@ -1,0 +1,85 @@
+
+Angular preloading is a technique used to improve the user experience of Angular applications by loading lazy-loaded modules in the background after the initial application load. This contrasts with lazy loading, where modules are only loaded when a user navigates to a route that requires them. 
+Purpose of Preloading:
+Reduce perceived loading times:
+By preloading modules, the application can proactively fetch the necessary code for upcoming routes, making navigation to those routes appear instantaneous.
+Enhance user experience:
+Users don't experience delays when navigating to commonly accessed or anticipated parts of the application.
+
+withPreloading
+Allows to configure a preloading strategy to use. The strategy is configured by providing a reference to a class that implements a PreloadingStrategy.
+
+Built-in Preloading Strategies:
+NoPreloading:
+This is the default strategy and prevents any preloading, relying solely on lazy loading on demand.
+PreloadAllModules:
+This strategy preloads all lazy-loaded modules immediately after the application starts.
+
+
+Custom Preloading Strategies:
+Developers can also create custom preloading strategies to implement more granular control over which modules are preloaded and when, based on application-specific logic (e.g., preloading based on user behavior, network conditions, or specific route configurations).
+
+
+
+
+Deferred loading with @defer
+
+Deferrable views, also known as @defer blocks, reduce the initial bundle size of your application by deferring the loading of code that is not strictly necessary for the initial rendering of a page. This often results in a faster initial load and improvement in Core Web Vitals (CWV), primarily Largest Contentful Paint (LCP) and Time to First Byte (TTFB).
+
+To use this feature, you can declaratively wrap a section of your template in a @defer block:
+
+
+@defer
+This is the primary block that defines the section of content that is lazily loaded. It is not rendered initially– deferred content loads and renders once the specified trigger occurs or the when condition is met.
+
+By default, a @defer block is triggered when the browser state becomes idle.
+
+
+@placeholder
+By default, defer blocks do not render any content before they are triggered.
+
+The @placeholder is an optional block that declares what content to show before the @defer block is triggered.
+
+ Keep in mind the dependencies of the placeholder block are eagerly loaded.
+
+The @placeholder block accepts an optional parameter to specify the minimum amount of time that this placeholder should be shown after the placeholder content initially renders.
+
+
+
+@loading
+The @loading block is an optional block that allows you to declare content that is shown while deferred dependencies are loading. It replaces the @placeholder block once loading is triggered.
+
+The @loading block accepts two optional parameters to help prevent fast flickering of content that may occur when deferred dependencies are fetched quickly,:
+
+minimum - the minimum amount of time that this placeholder should be shown
+after - the amount of time to wait after loading begins before showing the loading template
+
+
+@error
+The @error block is an optional block that displays if deferred loading fails. Similar to @placeholder and @loading, the dependencies of the @error block are eagerly loaded.
+
+
+
+on
+on specifies a condition for when the @defer block is triggered.
+
+The available triggers are as follows:
+
+Trigger	Description
+idle	    Triggers when the browser is idle.
+viewport	Triggers when specified content enters the viewport
+interaction	Triggers when the user interacts with specified element
+hover	    Triggers when the mouse hovers over specified area
+immediate	Triggers immediately after non-deferred content has finished rendering
+timer	    Triggers after a specific duration
+
+
+
+Prefetching data with prefetch
+In addition to specifying a condition that determines when deferred content is shown, you can optionally specify a prefetch trigger. This trigger lets you load the JavaScript associated with the @defer block before the deferred content is shown.
+
+Prefetching enables more advanced behaviors, such as letting you start to prefetch resources before a user has actually seen or interacted with a defer block, but might interact with it soon, making the resources available faster.
+
+
+when
+The when trigger accepts a custom conditional expression and loads the deferred content when the condition becomes truthy.

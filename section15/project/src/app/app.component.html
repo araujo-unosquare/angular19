@@ -1,0 +1,30 @@
+<!-- <h1>Lazy Loading Components</h1>
+<button routerLink="/first">First Component</button>
+<button routerLink="/second">Second Component</button>
+<router-outlet></router-outlet>
+ -->
+
+<h3>Component is loading</h3>
+<div class="app">
+  @defer () {
+  <app-test></app-test>
+  } @placeholder() {<!-- √ -->
+  <h4>Content is getting loaded</h4>
+  } @loading ( minimum 2s) {
+  <h5>Loading ...</h5>
+  } @error {
+  <h2>something went wrong</h2>
+  }
+</div>
+
+<br />
+<div>
+  <button #showContent>Show users</button>
+</div>
+<div>
+  @defer (on interaction(showContent); prefetch on idle) {
+  <app-users></app-users>
+  }<!--  @loading ( minimum 2s) {
+  <h5>Loading ...</h5>
+  } -->
+</div>
