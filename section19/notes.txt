@@ -1,0 +1,40 @@
+What are signals?
+A signal is a wrapper around a value that notifies interested consumers when that value changes. Signals can contain any value, from primitives to complex data structures.
+
+You read a signal's value by calling its getter function, which allows Angular to track where the signal is used.
+
+
+
+Signals may be either writable or read-only.
+
+Writable signals
+Writable signals provide an API for updating their values directly. You create writable signals by calling the signal function with the signal's initial value:
+
+To change the value of a writable signal, either .set() it directly:
+or use the .update() operation to compute a new value from the previous one:
+
+
+
+Computed signals
+Computed signal are read-only signals that derive their value from other signals. You define computed signals using the computed function and specifying a derivation:
+
+
+Computed signal dependencies are dynamic
+Only the signals actually read during the derivation are tracked. 
+Computed signals are not writable signals
+You cannot directly assign values to a computed signal. 
+
+
+
+
+Effects
+Signals are useful because they notify interested consumers when they change. An effect is an operation that runs whenever one or more signal values change. You can create an effect with the effect function:
+Effects always run at least once. When an effect runs, it tracks any signal value reads. Whenever any of these signal values change, the effect runs again. Similar to computed signals, effects keep track of their dependencies dynamically, and only track signals which were read in the most recent execution.
+
+Effects always execute asynchronously, during the change detection process.
+
+
+
+The linkedSignal function lets you create a signal to hold some state that is intrinsically linked to some other state.
+
+linkedSignal works similarly to signal with one key difference— instead of passing a default value, you pass a computation function, just like computed. When the value of the computation changes, the value of the linkedSignal changes to the computation result. This helps ensure that the linkedSignal always has a valid value.

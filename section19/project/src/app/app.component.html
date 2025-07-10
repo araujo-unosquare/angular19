@@ -1,0 +1,31 @@
+<h1>Signals</h1>
+
+<div>
+  <button (click)="incrCounter()">Increment</button>
+  <p>Signal: {{ count() }}</p>
+  <p>Computed: {{ remainingCount() }}</p>
+</div>
+
+<div>
+  {{ cart() | json }}
+</div>
+
+<app-to-do-list></app-to-do-list>
+
+<div>
+  <h2>Counter1</h2>
+  <h3>{{ counter1() }}</h3>
+  <button (click)="updateC1()">Update C1</button>
+  <br />
+  <h2>Counter2</h2>
+  <h3>{{ counter2() }}</h3>
+  <button (click)="updateC2()">Update C2</button>
+</div>
+
+<app-cart></app-cart>
+
+<!-- <h2>Linked signal</h2>
+<h3>Value: {{ value() }}</h3>
+<h3>Linked Value: {{ linkedValue() }}</h3> -->
+
+<app-filter-items></app-filter-items>

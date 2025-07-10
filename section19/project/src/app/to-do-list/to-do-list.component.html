@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="todo-app">
+    <div class="app-title">
+      <h1>To-do app</h1>
+      <i class="fa fa-link" aria-hidden="true"></i>
+    </div>
+    <div class="row">
+      <input
+        type="text"
+        placeholder="Add a to-do item"
+        [(ngModel)]="todoName"
+        #todo
+      />
+      <button type="button" class="addBtn" (click)="addTodo(todo)">
+        Add Task
+      </button>
+    </div>
+    <ul>
+      @for (item of todos(); track item; let i = $index) {
+      <li class="todo-item">
+        {{ item }}
+
+        <button class="removeBtn" type="button" (click)="removeTodo(i)">
+          Remove
+        </button>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
