@@ -1,0 +1,23 @@
+<div>
+  <h1>Fetching Data From JSON</h1>
+  <ng-container>
+    @if(jsonData$ | async; as data){
+    <table>
+      <thead>
+        <tr>
+          <th>Categories</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(category of data; track category){
+        <tr>
+          <td>{{ category }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }@else {
+    <p class="loading-msg">Loading data...</p>
+    }
+  </ng-container>
+</div>

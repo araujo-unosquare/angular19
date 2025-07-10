@@ -1,0 +1,109 @@
+RxJS is a library for composing asynchronous and event-based programs by using observable sequences. It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects) and operators inspired by Array methods (map, filter, reduce, every, etc) to allow handling asynchronous events as collections.
+
+he essential concepts in RxJS which solve async event management are:
+
+Observable: represents the idea of an invokable collection of future values or events.
+Observer: is a collection of callbacks that knows how to listen to values delivered by the Observable.
+Subscription: represents the execution of an Observable, is primarily useful for cancelling the execution.
+Operators: are pure functions that enable a functional programming style of dealing with collections with operations like map, filter, concat, reduce, etc.
+Subject: is equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers.
+Schedulers: are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. setTimeout or requestAnimationFrame or others.
+
+
+Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change. RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code.
+
+
+
+
+Executing Observables
+The code inside new Observable(function subscribe(subscriber) {...}) represents an "Observable execution", a lazy computation that only happens for each Observer that subscribes. The execution produces multiple values over time, either synchronously or asynchronously.
+
+There are three types of values an Observable Execution can deliver:
+
+"Next" notification: sends a value such as a Number, a String, an Object, etc.
+"Error" notification: sends a JavaScript Error or exception.
+"Complete" notification: does not send a value.
+"Next" notifications are the most important and most common type: they represent actual data being delivered to a subscriber. "Error" and "Complete" notifications may happen only once during the Observable Execution, and there can only be either one of them.
+
+
+
+Disposing Observable Executions
+Because Observable Executions may be infinite, and it's common for an Observer to want to abort execution in finite time, we need an API for canceling an execution. Since each execution is exclusive to one Observer only, once the Observer is done receiving values, it has to have a way to stop the execution, in order to avoid wasting computation power or memory resources.
+
+The Subscription represents the ongoing execution, and has a minimal API which allows you to cancel that execution. Read more about the Subscription type here. With subscription.unsubscribe() you can cancel the ongoing execution:
+
+
+
+
+The Angular async pipe is a built-in pipe used to simplify the handling of asynchronous data in templates, particularly when working with RxJS Observables or Promises.
+How it works:
+Subscription Management:
+The async pipe automatically subscribes to the Observable or Promise it's applied to in the template. This eliminates the need for manual subscribe() calls in the component's TypeScript file.
+Automatic Unsubscription:
+Crucially, the async pipe automatically unsubscribes from the Observable or Promise when the component is destroyed. This prevents memory leaks and simplifies resource management.
+
+
+
+ Cold Observables
+Definition: The observable starts producing data only when a subscriber subscribes.
+
+Each subscriber gets its own execution (independent stream).
+
+Similar to: watching a movie from the beginning on your own.
+
+✅ Characteristics:
+Data producer is created per subscription.
+
+Ideal for things like HTTP requests, timers, or any deferred computation.
+
+
+Hot Observables
+Definition: The observable starts producing data independently of subscriptions.
+
+Subscribers share the same execution.
+
+Similar to: tuning in to a live broadcast—you miss what already aired.
+
+✅ Characteristics:
+Data is produced regardless of subscribers.
+
+Useful for things like user events, WebSocket streams, or shared live data.
+
+
+
+operators
+
+of
+Converts the arguments to an observable sequence.
+
+from
+from converts various other objects and data types into Observables. It also converts a Promise, an array-like, or an iterable object into an Observable that emits the items in that promise, array, or iterable. A String, in this context, is treated as an array of characters. 
+
+interval returns an Observable that emits an infinite sequence of ascending integers, with a constant interval of time of your choosing between those emissions. The first emission is not sent immediately, but only after the first period has passed. By default, this operator uses the async SchedulerLike to provide a notion of time, but you may pass any SchedulerLike to it.
+
+timer
+Creates an observable that will wait for a specified time period, or exact date, before emitting the number 0.
+
+
+EMPTY
+A simple Observable that emits no items to the Observer and immediately emits a complete notification.
+
+pipe()
+If there is a commonly used sequence of operators in your code, use the pipe() function to extract the sequence into a new operator. Even if a sequence is not that common, breaking it out into a single operator can improve readability.
+
+Piping
+Pipeable operators are functions, so they could be used like ordinary functions: op()(obs) — but in practice, there tend to be many of them convolved together, and quickly become unreadable: op4()(op3()(op2()(op1()(obs)))). For that reason, Observables have a method called .pipe() that accomplishes the same thing while being much easier to read:
+
+filter
+Filter items emitted by the source Observable by only emitting those that satisfy a specified predicate.
+
+
+map
+Applies a given project function to each value emitted by the source Observable, and emits the resulting values as an Observable.
+
+mergeMap
+Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an Observable, and then merging those resulting Observables and emitting the results of this merger.
+
+
+concatMap
+Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an (so-called "inner") Observable. Each new inner Observable is concatenated with the previous inner Observable.
