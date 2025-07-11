@@ -1,0 +1,46 @@
+
+Angular's change detection mechanism is responsible for tracking and updating the view when app state changes
+it checks component bindings and updates DOM if there is a difference between current and previous values
+
+
+pollution 
+In some cases scheduled tasks or microtasks don’t make any changes in the data model, which makes running change detection unnecessary. Common examples are:
+
+requestAnimationFrame, setTimeout or setInterval
+Task or microtask scheduling by third-party libraries
+
+Run tasks outside NgZone
+In such cases, you can instruct Angular to avoid calling change detection for tasks scheduled by a given piece of code using NgZone.
+
+Third-party libraries commonly trigger unnecessary change detection cycles when their APIs are invoked within the Angular zone. This phenomenon particularly affects libraries that set up event listeners or initiate other tasks (such as timers, XHR requests, etc.). Avoid these extra cycles by calling library APIs outside the Angular zone:
+
+this.ngZone.runOutsideAngular(() => {
+      Plotly.newPlot('chart', data);
+    });
+
+
+
+Using OnPush
+OnPush change detection instructs Angular to run change detection for a component subtree only when:
+
+The root component of the subtree receives new inputs as the result of a template binding. Angular compares the current and past value of the input with ==.
+Angular handles an event (for example using event binding, output binding, or @HostListener ) in the subtree's root component or any of its children whether they are using OnPush change detection or not.
+
+
+
+An event is handled by a component with OnPush
+If Angular handles an event within a component with OnPush strategy, the framework will execute change detection within the entire component tree. Angular will ignore component subtrees with roots using OnPush, which have not received new inputs and are outside the component which handled the event.
+
+As an example, if Angular handles an event within MainComponent, the framework will run change detection in the entire component tree. Angular will ignore the subtree with root LoginComponent because it has OnPush and the event happened outside of its scope.
+
+
+An event is handled by a descendant of a component with OnPush
+If Angular handles an event in a component with OnPush, the framework will execute change detection in the entire component tree, including the component’s ancestors.
+
+As an example, in the diagram below, Angular handles an event in LoginComponent which uses OnPush. Angular will invoke change detection in the entire component subtree including MainComponent (LoginComponent’s parent), even though MainComponent has OnPush as well. Angular checks MainComponent as well because LoginComponent is part of its view.
+
+
+
+
+Removing ZoneJS
+Zoneless applications should remove ZoneJS entirely from the build to reduce bundle size. ZoneJS is typically loaded via the polyfills option in angular.json, both in the build and test targets. Remove zone.js and zone.js/testing from both to remove it from the build. Projects which use an explicit polyfills.ts file should remove import 'zone.js'; and import 'zone.js/testing'; from the file.
