@@ -34,3 +34,17 @@ insert into products(id, product_name, product_description, price, ratings, cate
 (7, 'Earrings', 'description', 10, 4, 7, 'sweater'),
 (8, 'Scarf', 'description', 20, 4, 7, 'sweater'),
 (9, 'Boots', 'description', 100, 4, 6, 'sweater')
+
+
+alter table products
+add column keywords varchar(200) null;
+
+update estore.products set keywords = 'jacket,woolen,black' where id=1;
+update estore.products set keywords = 'bag,purse,leather,black' where id=2;
+update estore.products set keywords = 'dress,party,frock' where id=3;
+update estore.products set keywords = 'denim,jeans,casual,pant' where id=4;
+update estore.products set keywords = 'boots,laced,yellow' where id=5;
+update estore.products set keywords = 'leather,black,bag' where id=6;
+update estore.products set keywords = 'ear,rings,blue,golden' where id=7;
+update estore.products set keywords = 'scarf,chocolate,party' where id=8;
+update estore.products set keywords = 'leather,black,boots' where id=9;
